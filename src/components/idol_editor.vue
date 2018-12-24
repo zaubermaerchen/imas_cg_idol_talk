@@ -90,6 +90,7 @@
     }
     input[type="search"] {
         width: 100%;
+        font-size: 16px;
         border-radius: 3px;
         box-shadow: none;
         padding: .5em 2px;

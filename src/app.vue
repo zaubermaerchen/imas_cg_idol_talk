@@ -135,8 +135,10 @@
     section.idol_talk {
         width: 300px;
         padding: 5px 10px;
-        margin-top: 1em;
+        margin: 0 auto;
         background: #000000;
+        transform: scale(2.0);
+        transform-origin: 50% 0%;
     }
 
     ul.idol_image {

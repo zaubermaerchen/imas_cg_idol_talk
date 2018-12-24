@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h2>トークメンバ</h2>
+        <h2>トークメンバー</h2>
         <p>
             <select v-model="new_position">>
                 <option v-for="(option, index) in positions" v-bind:value="index">{{ option.name }}</option>
@@ -68,6 +68,7 @@
         max-width: 800px;
     }
     select {
+        font-size: 16px;
         border-radius: 3px;
         box-shadow: none;
         padding: .5em 2px;
@@ -75,12 +76,14 @@
     }
     input[type="text"] {
         width: 100%;
+        font-size: 16px;
         border-radius: 3px;
         box-shadow: none;
         padding: .5em 2px;
         border: 1px solid #bbb;
     }
     button {
+        font-size: 16px;
         border-radius: 3px;
         box-shadow: none;
         padding: .5em 2em;
