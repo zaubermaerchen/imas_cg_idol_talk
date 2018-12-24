@@ -93,7 +93,7 @@
         font-size: 16px;
         border-radius: 3px;
         box-shadow: none;
-        padding: .5em 2px;
+        padding: .5em;
         border: 1px solid #bbb;
     }
     ul {

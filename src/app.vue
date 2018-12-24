@@ -8,10 +8,25 @@
             <serif v-bind:top="false" v-bind:type="bottom_serif.type" v-bind:position="bottom_serif.position" v-bind:message="bottom_serif.message" v-on:click="clickSerif"></serif>
         </section>
 
-        <modal name="example">
+        <ul>
+            <li>台詞、アイドル画像は該当箇所をクリックして表示されるダイアログで変更可能です</li>
+        </ul>
+
+        <form method="get">
+            <input type="hidden" v-for="(idol, index) in idols" v-bind:name="'idol' + index" v-bind:value="idol.id" />
+            <input type="hidden" v-for="(idol, index) in idols" v-bind:name="'type' + index" v-bind:value="idol.type" />
+            <input type="hidden" name="top_serif" v-bind:value="top_serif.message" />
+            <input type="hidden" name="top_serif_index" v-bind:value="top_serif.position" />
+            <input type="hidden" name="bottom_serif" v-bind:value="bottom_serif.message" />
+            <input type="hidden" name="bottom_serif_index" v-bind:value="bottom_serif.position" />
+            <button type="submit">固定URL生成</button>
+        </form>
+
+
+        <modal name="idol_editor">
             <idoleditor v-bind:index="edit_idol.index" v-bind:name="edit_idol.name" v-on:click="changeIdol"></idoleditor>
         </modal>
-        <modal name="example2">
+        <modal name="serif_editor">
             <serifeditor v-bind:top="edit_serif.top" v-bind:position="edit_serif.position" v-bind:message="edit_serif.message" v-on:change="changeSerif"></serifeditor>
         </modal>
     </section>
@@ -102,7 +117,7 @@
                 this.edit_serif.top = top;
                 this.edit_serif.position = serif.position;
                 this.edit_serif.message = serif.message;
-                this.$modal.push('example2');
+                this.$modal.push('serif_editor');
             },
             changeSerif(top: boolean, index: number, message: string): void {
                 let serif = top ? this.top_serif : this.bottom_serif;
@@ -114,7 +129,7 @@
             clickIdol(index: number, name: string): void {
                 this.edit_idol.index = index;
                 this.edit_idol.name =  name;
-                this.$modal.push('example');
+                this.$modal.push('idol_editor');
             },
             changeIdol(index: number, type: number, idol_id: number): void {
                 this.idols[index].type = type;
@@ -137,8 +152,6 @@
         padding: 5px 10px;
         margin: 0 auto;
         background: #000000;
-        transform: scale(2.0);
-        transform-origin: 50% 0%;
     }
 
     ul.idol_image {
@@ -152,5 +165,12 @@
     ul.idol_image > li {
         margin: 0;
         padding: 0;
+    }
+    button[type="submit"] {
+        font-size: 16px;
+        border-radius: 3px;
+        box-shadow: none;
+        padding: .5em 2em;
+        border: 1px solid #bbb;
     }
 </style>
