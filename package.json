@@ -1,0 +1,32 @@
+{
+  "name": "idol_talk",
+  "version": "1.0.0",
+  "description": "THE IDOLM@STER CINDERELLA GIRLS アイドルトーク風ジェネレーター",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html && cp -r src/images dist/",
+    "build": "rm -rf dist/* && parcel build src/index.html --public-url . && cp -r src/images dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaubermaerchen/imas_cg_idol_talk.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zaubermaerchen/imas_cg_idol_talk/issues"
+  },
+  "homepage": "https://github.com/zaubermaerchen/imas_cg_idol_talk#readme",
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.3.0",
+    "parcel-bundler": "^1.10.3",
+    "typescript": "^3.1.6",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-hot-reload-api": "^2.3.1",
+    "vue-thin-modal": "^1.2.1"
+  }
+}
