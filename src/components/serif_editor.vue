@@ -1,19 +1,10 @@
 <template>
     <section>
-        <h2>トークメンバー</h2>
-        <p>
-            <select v-model="new_position">>
-                <option v-for="(option, index) in positions" v-bind:value="index">{{ option.name }}</option>
-            </select>
-        </p>
-        <h2>トーク内容</h2>
-        <p>
-            <input type="text" v-model="new_message" />
-        </p>
-
-        <p>
-            <button type="button" v-on:click="click">更新</button>
-        </p>
+        <el-select v-model="new_position" placeholder="トークメンバー">
+            <el-option v-for="(option, index) in positions" v-bind:key="index" v-bind:label="option.name" v-bind:value="index"></el-option>
+        </el-select>
+        <el-input placeholder="トーク内容" v-model="new_message"></el-input>
+        <el-button type="primary" v-on:click="click">更新</el-button>
     </section>
 </template>
 
@@ -67,26 +58,7 @@
         width: auto;
         max-width: 800px;
     }
-    select {
-        font-size: 16px;
-        border-radius: 3px;
-        box-shadow: none;
-        padding: .5em 2px;
-        border: 1px solid #bbb;
-    }
-    input[type="text"] {
-        width: 100%;
-        font-size: 16px;
-        border-radius: 3px;
-        box-shadow: none;
-        padding: .5em;
-        border: 1px solid #bbb;
-    }
-    button {
-        font-size: 16px;
-        border-radius: 3px;
-        box-shadow: none;
-        padding: .5em 2em;
-        border: 1px solid #bbb;
+    .el-select, .el-input {
+        margin-bottom: 1em;
     }
 </style>

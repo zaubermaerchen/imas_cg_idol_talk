@@ -18,24 +18,7 @@
                 }
             },
             click(): void {
-                if (this.id == 0) {
-                    this.$emit("click", this.index, "");
-                } else {
-                    const url = new URL("https://zaubermaerchen.info/imas_cg/api/idol/" + this.id + "/");
-
-                    fetch(url.href, {
-                        method: "GET",
-                        headers: {
-                            "Accept": "application/json",
-                        },
-                        mode: "cors",
-                        credentials: "omit"
-                    }).then((response) => {
-                        return response.json();
-                    }).then((json) => {
-                        this.$emit("click", this.index, json.name);
-                    })
-                }
+                this.$emit("click", this.index, this.id);
             }
         }
     }

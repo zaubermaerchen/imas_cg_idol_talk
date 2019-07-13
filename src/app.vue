@@ -2,15 +2,11 @@
     <section>
         <section class="idol_talk">
             <serif v-bind:top="true" v-bind:type="top_serif.type" v-bind:position="top_serif.position" v-bind:message="top_serif.message" v-on:click="clickSerif"></serif>
-            <ul class="idol_image">
+            <draggable class="idol_image" v-model="idols" v-bind:element="'ul'" v-on:start="drag=true" v-on:end="drag=false">
                 <li v-for="(idol, index) in idols"><idolimage v-bind:index="index" v-bind:id="idol.id" v-on:click="clickIdol"></idolimage></li>
-            </ul>
+            </draggable>
             <serif v-bind:top="false" v-bind:type="bottom_serif.type" v-bind:position="bottom_serif.position" v-bind:message="bottom_serif.message" v-on:click="clickSerif"></serif>
         </section>
-
-        <ul>
-            <li>台詞、アイドル画像は該当箇所をクリックして表示されるダイアログで変更可能です</li>
-        </ul>
 
         <form method="get">
             <input type="hidden" v-for="(idol, index) in idols" v-bind:name="'idol' + index" v-bind:value="idol.id" />
@@ -19,12 +15,12 @@
             <input type="hidden" name="top_serif_index" v-bind:value="top_serif.position" />
             <input type="hidden" name="bottom_serif" v-bind:value="bottom_serif.message" />
             <input type="hidden" name="bottom_serif_index" v-bind:value="bottom_serif.position" />
-            <button type="submit">固定URL生成</button>
+            <el-button type="primary" native-type="submit">固定URL生成</el-button>
         </form>
 
 
         <modal name="idol_editor">
-            <idoleditor v-bind:index="edit_idol.index" v-bind:name="edit_idol.name" v-on:click="changeIdol"></idoleditor>
+            <idoleditor v-bind:index="edit_idol.index" v-bind:idol_id="edit_idol.idol_id" v-on:click="changeIdol"></idoleditor>
         </modal>
         <modal name="serif_editor">
             <serifeditor v-bind:top="edit_serif.top" v-bind:position="edit_serif.position" v-bind:message="edit_serif.message" v-on:change="changeSerif"></serifeditor>
@@ -33,6 +29,7 @@
 </template>
 
 <script lang="ts">
+    import draggable from 'vuedraggable'
     import serif from './components/serif.vue';
     import idoL_image from './components/idol_image.vue';
     import idol_editor from './components/idol_editor.vue';
@@ -41,6 +38,7 @@
     export default {
         name: "app",
         components: {
+            "draggable": draggable,
             "serif": serif,
             "idolimage": idoL_image,
             "idoleditor": idol_editor,
@@ -67,7 +65,7 @@
                 },
                 edit_idol: {
                     index: 0,
-                    name: "",
+                    idol_id: 0,
                 },
                 edit_serif: {
                     top: true,
@@ -117,7 +115,9 @@
                 this.edit_serif.top = top;
                 this.edit_serif.position = serif.position;
                 this.edit_serif.message = serif.message;
-                this.$modal.push('serif_editor');
+                setTimeout(() => {
+                    this.$modal.push('serif_editor');
+                }, 100);
             },
             changeSerif(top: boolean, index: number, message: string): void {
                 let serif = top ? this.top_serif : this.bottom_serif;
@@ -126,10 +126,12 @@
                 serif.message = message;
                 this.$modal.pop()
             },
-            clickIdol(index: number, name: string): void {
+            clickIdol(index: number, idol_id: number): void {
                 this.edit_idol.index = index;
-                this.edit_idol.name =  name;
-                this.$modal.push('idol_editor');
+                this.edit_idol.idol_id =  idol_id;
+                setTimeout(() => {
+                    this.$modal.push("idol_editor");
+                }, 100);
             },
             changeIdol(index: number, type: number, idol_id: number): void {
                 this.idols[index].type = type;
@@ -165,12 +167,6 @@
     ul.idol_image > li {
         margin: 0;
         padding: 0;
-    }
-    button[type="submit"] {
-        font-size: 16px;
-        border-radius: 3px;
-        box-shadow: none;
-        padding: .5em 2em;
-        border: 1px solid #bbb;
+        cursor: pointer;
     }
 </style>
