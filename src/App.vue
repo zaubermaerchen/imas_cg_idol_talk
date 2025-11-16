@@ -1,47 +1,44 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue'
+
+import Card from '@/models/card.ts'
+import CardImage from '@/components/CardImage.vue'
+
+const cardList = ref<Array<Card | undefined>>([
+  undefined,
+  new Card(1001101, '小日向美穂', 0, 0, 'bef9093335fbcbe9e92a41d2d68a206d'),
+  new Card(1000101, '島村卯月', 0, 0, '0dabb79ff64691111a0abae2ffed01ce'),
+  new Card(1001301, '五十嵐響子', 0, 0, 'fb3b173c49703071b4dbdd5ed424640c'),
+  undefined,
+])
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
   <main>
-    <TheWelcome />
+    <ul>
+      <li v-for="(card, index) in cardList" v-bind:key="index"><CardImage v-bind:card="card" /></li>
+    </ul>
   </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+main {
+  width: 300px;
+  padding: 5px 10px;
+  margin: 0 auto;
+  background: #000000;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+main > ul {
+  display: flex;
+  font-size: 0;
+  margin-top: 0;
+  padding-left: 1em;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+main > ul > li {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
 }
 </style>
