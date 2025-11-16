@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 import Card from '@/models/card.ts'
 import CardImage from '@/components/CardImage.vue'
+import SerifFrame from '@/components/SerifFrame.vue'
 
 const cardList = ref<Array<Card | undefined>>([
   undefined,
@@ -15,9 +16,13 @@ const cardList = ref<Array<Card | undefined>>([
 
 <template>
   <main>
+    <SerifFrame
+      message="はじめまして、プロデューサーさん！ 島村卯月、17歳です。私、精一杯頑張りますから、一緒に夢叶えましょうね♪よろしくお願いしますっ！"
+    />
     <ul>
       <li v-for="(card, index) in cardList" v-bind:key="index"><CardImage v-bind:card="card" /></li>
     </ul>
+    <SerifFrame direction="bottom" message="今日も1日がんばります！" />
   </main>
 </template>
 
@@ -25,7 +30,6 @@ const cardList = ref<Array<Card | undefined>>([
 main {
   width: 300px;
   padding: 5px 10px;
-  margin: 0 auto;
   background: #000000;
 }
 
