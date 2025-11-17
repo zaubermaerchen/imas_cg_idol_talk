@@ -11,7 +11,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const blankImageUrl = props.size === 'ls' ? blankLsImageUrl : blankXsImageUrl
-const width = props.size === 'ls' ? 60 : 100
+const width = props.size === 'ls' ? 120 : 100
 </script>
 
 <template>

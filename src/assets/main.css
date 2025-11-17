@@ -23,14 +23,15 @@ ul.button-list > li {
 }
 
 .serif {
-  min-height: 1.45em;
+  font-size: 200%;
+  min-height: 1.6em;
   color: #1d1d1d;
   background: #ffffff;
   margin: 0;
-  padding: 5px 10px;
+  padding: 10px 20px;
   word-wrap: break-word;
-  border: solid 3px #0080ff;
-  border-radius: 10px;
+  border: solid 6px #0080ff;
+  border-radius: 20px;
   position: relative;
   cursor: pointer;
 }
@@ -45,34 +46,34 @@ ul.button-list > li {
 }
 
 .serif::before {
-  border-width: 0 6px;
+  border-width: 0 12px;
 }
 .serif::after {
-  border-width: 0 4px;
+  border-width: 0 8px;
 }
 
 .serif.top {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 .serif.top:before {
-  border-top: solid 12px #0080ff;
-  bottom: -12px;
+  border-top: solid 24px #0080ff;
+  bottom: -24px;
 }
 .serif.top:after {
-  border-top: solid 9px #fff;
-  bottom: -8px;
+  border-top: solid 18px #fff;
+  bottom: -16px;
 }
 
 .serif.bottom {
-  margin-top: 12px;
+  margin-top: 24px;
 }
 .serif.bottom:before {
-  border-bottom: solid 12px #0080ff;
-  top: -12px;
+  border-bottom: solid 24px #0080ff;
+  top: -24px;
 }
 .serif.bottom:after {
-  border-bottom: solid 9px #fff;
-  top: -8px;
+  border-bottom: solid 18px #fff;
+  top: -16px;
 }
 
 .serif.cute {
@@ -106,38 +107,37 @@ ul.button-list > li {
 }
 
 .serif.position0:before {
-  left: 138px;
+  left: 276px;
 }
 .serif.position0:after {
-  left: 140px;
+  left: 280px;
 }
 .serif.position1:before {
-  left: 78px;
+  left: 156px;
 }
 .serif.position1:after {
-  left: 80px;
+  left: 160px;
 }
 .serif.position2:before {
-  left: 198px;
+  left: 396px;
 }
 .serif.position2:after {
-  left: 200px;
+  left: 400px;
 }
 .serif.position3:before {
-  left: 18px;
+  left: 36px;
 }
 .serif.position3:after {
-  left: 20px;
+  left: 40px;
 }
 .serif.position4:before {
-  left: 258px;
+  left: 516px;
 }
 .serif.position4:after {
-  left: 260px;
+  left: 520px;
 }
 
 #app {
-  width: 600px;
   margin: 0 auto;
   font-weight: normal;
 }
@@ -149,12 +149,12 @@ ul.button-list > li {
 }
 
 #app-container > .el-footer {
-  width: 360px;
+  width: 680px;
 }
 
 #my-studio {
-  width: 300px;
-  padding: 5px 10px;
+  width: 600px;
+  padding: 10px 20px;
   background: #000000;
 }
 

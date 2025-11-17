@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { domToPng } from 'modern-screenshot'
+import { domToJpeg } from 'modern-screenshot'
 
 import MyStudio from '@/components/MyStudio.vue'
 
@@ -8,9 +8,9 @@ const myStudio = ref<InstanceType<typeof MyStudio> | null>(null)
 
 const downloadImage = async () => {
   const node = myStudio.value!.$el as HTMLElement
-  const dataUrl = await domToPng(node)
+  const dataUrl = await domToJpeg(node, { quality: 0.85 })
   const link = document.createElement('a')
-  link.download = `my_studio_${Math.round(new Date().getTime() / 1000)}.png`
+  link.download = `my_studio_${Math.round(new Date().getTime() / 1000)}.jpg`
   link.href = dataUrl
   link.click()
 }
@@ -24,7 +24,7 @@ const downloadImage = async () => {
     <el-footer>
       <ul class="button-list">
         <li>
-          <el-button type="primary" v-on:click="downloadImage">画像生成</el-button>
+          <el-button type="primary" size="large" v-on:click="downloadImage">画像生成</el-button>
         </li>
       </ul>
     </el-footer>
