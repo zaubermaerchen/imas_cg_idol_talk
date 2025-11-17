@@ -17,12 +17,16 @@ const downloadImage = async () => {
 </script>
 
 <template>
-  <el-container>
+  <el-container id="app-container">
     <el-main>
       <MyStudio ref="myStudio" />
     </el-main>
     <el-footer>
-      <el-button type="primary" v-on:click="downloadImage">Download Image</el-button>
+      <ul class="button-list">
+        <li>
+          <el-button type="primary" v-on:click="downloadImage">画像生成</el-button>
+        </li>
+      </ul>
     </el-footer>
   </el-container>
 </template>

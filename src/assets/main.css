@@ -138,10 +138,20 @@ ul.button-list > li {
 }
 
 #app {
-  max-width: 1280px;
+  width: 600px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+}
+
+#app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app-container > .el-footer {
+  width: 360px;
 }
 
 #my-studio {
@@ -169,9 +179,6 @@ ul.button-list > li {
 }
 #card-selector-modal > .el-main {
   padding-top: 0;
-}
-#card-selector-modal > .el-footer {
-  text-align: right;
 }
 #card-selector-modal ul.card-list {
   list-style: none;
