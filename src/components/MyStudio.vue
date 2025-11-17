@@ -52,24 +52,3 @@ const showCardSelectorModal = (cardIndex: number) => {
     </VueFinalModal>
   </section>
 </template>
-
-<style scoped>
-#my-studio {
-  width: 300px;
-  padding: 5px 10px;
-  background: #000000;
-}
-
-#my-studio > ul {
-  display: flex;
-  font-size: 0;
-  margin-top: 0;
-  padding-left: 1em;
-}
-
-#my-studio > ul > li {
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-}
-</style>
