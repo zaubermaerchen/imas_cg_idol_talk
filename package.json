@@ -6,6 +6,14 @@
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
+  "homepage": "https://github.com/zaubermaerchen/imas_cg_idol_talk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaubermaerchen/imas_cg_idol_talk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zaubermaerchen/imas_cg_idol_talk/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -16,8 +24,7 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
     "lint": "run-s lint:*",
-    "format": "prettier --write src/",
-    "test:browser": "vitest --config=vitest.browser.config.ts"
+    "format": "prettier --write src/"
   },
   "dependencies": {
     "element-plus": "^2.11.8",
