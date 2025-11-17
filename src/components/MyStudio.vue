@@ -10,6 +10,7 @@ import SerifFrame from '@/components/SerifFrame.vue'
 import CardSelectorModal from '@/components/CardSelectorModal.vue'
 import SerifEditorModal from '@/components/SerifEditorModal.vue'
 import { useTargetCard } from '@/composables/targetCard.ts'
+import { findCardByPosition } from '@/utils/card.ts'
 
 const cardList = ref<Array<Card | undefined>>([
   undefined,
@@ -42,13 +43,20 @@ const showSerifEditorModal = () => {
 
 <template>
   <section id="my-studio">
-    <SerifFrame v-bind:serif="serifList[0]!" v-on:click="showSerifEditorModal" />
+    <SerifFrame
+      v-bind:serif="serifList[0]!"
+      v-bind:card="findCardByPosition(cardList, serifList[0]!.position)"
+      v-on:click="showSerifEditorModal"
+    />
     <VueDraggable v-model="cardList" tag="ul">
       <li v-for="(card, index) in cardList" v-bind:key="index">
         <CardImage v-bind:card="card" size="ls" v-on:click="showCardSelectorModal(index)" />
       </li>
     </VueDraggable>
-    <SerifFrame v-bind:serif="serifList[1]!" />
+    <SerifFrame
+      v-bind:serif="serifList[1]!"
+      v-bind:card="findCardByPosition(cardList, serifList[1]!.position)"
+    />
 
     <VueFinalModal
       class="modal"

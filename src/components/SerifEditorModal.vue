@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 
 import Card from '@/models/card.ts'
 import Serif from '@/models/serif.ts'
+import { findCardByPosition } from '@/utils/card.ts'
 
 interface Props {
   cardList: Array<Card | undefined>
@@ -19,13 +20,10 @@ const props = defineProps<Props>()
 const emits = defineEmits<Emits>()
 
 const positionList = computed(() => {
-  return [
-    { value: 0, label: `リーダー: ${props.cardList[2]?.name ?? ''}` },
-    { value: 1, label: `メンバー1: ${props.cardList[1]?.name ?? ''}` },
-    { value: 2, label: `メンバー2: ${props.cardList[3]?.name ?? ''}` },
-    { value: 3, label: `メンバー3: ${props.cardList[0]?.name ?? ''}` },
-    { value: 4, label: `メンバー4: ${props.cardList[4]?.name ?? ''}` },
-  ]
+  return ['リーダー', 'メンバー1', 'メンバー2', 'メンバー3', 'メンバー4'].map((label, position) => {
+    const card = findCardByPosition(props.cardList, position)
+    return { value: position, label: `${label}: ${card?.name ?? ''}` }
+  })
 })
 
 const confirm = () => {
