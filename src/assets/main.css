@@ -23,6 +23,120 @@ ul.button-list > li {
   margin-left: 0.5em;
 }
 
+.serif {
+  min-height: 1.45em;
+  color: #1d1d1d;
+  background: #ffffff;
+  margin: 0;
+  padding: 5px 10px;
+  word-wrap: break-word;
+  border: solid 3px #0080ff;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.serif::before,
+.serif::after {
+  position: absolute;
+  content: ' ';
+  width: 0;
+  height: 0;
+  border: solid 0 transparent;
+}
+
+.serif::before {
+  border-width: 0 6px;
+}
+.serif::after {
+  border-width: 0 4px;
+}
+
+.serif.top {
+  margin-bottom: 12px;
+}
+.serif.top:before {
+  border-top: solid 12px #0080ff;
+  bottom: -12px;
+}
+.serif.top:after {
+  border-top: solid 9px #fff;
+  bottom: -8px;
+}
+
+.serif.bottom {
+  margin-top: 12px;
+}
+.serif.bottom:before {
+  border-bottom: solid 12px #0080ff;
+  top: -12px;
+}
+.serif.bottom:after {
+  border-bottom: solid 9px #fff;
+  top: -8px;
+}
+
+.serif.cute {
+  border-color: #f36;
+}
+.serif.cool {
+  border-color: #0080ff;
+}
+.serif.passion {
+  border-color: #ffb025;
+}
+
+.serif.top.cute:before {
+  border-top-color: #f36;
+}
+.serif.top.cool:before {
+  border-top-color: #0080ff;
+}
+.serif.top.passion:before {
+  border-top-color: #ffb025;
+}
+
+.serif.bottom.cute:before {
+  border-bottom-color: #f36;
+}
+.serif.bottom.cool:before {
+  border-bottom-color: #0080ff;
+}
+.serif.bottom.passion:before {
+  border-bottom-color: #ffb025;
+}
+
+.serif.position0:before {
+  left: 138px;
+}
+.serif.position0:after {
+  left: 140px;
+}
+.serif.position1:before {
+  left: 78px;
+}
+.serif.position1:after {
+  left: 80px;
+}
+.serif.position2:before {
+  left: 198px;
+}
+.serif.position2:after {
+  left: 200px;
+}
+.serif.position3:before {
+  left: 18px;
+}
+.serif.position3:after {
+  left: 20px;
+}
+.serif.position4:before {
+  left: 258px;
+}
+.serif.position4:after {
+  left: 260px;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
