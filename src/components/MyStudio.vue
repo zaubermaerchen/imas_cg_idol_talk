@@ -6,7 +6,7 @@ import { VueFinalModal } from 'vue-final-modal'
 import Card from '@/models/card.ts'
 import CardImage from '@/components/CardImage.vue'
 import SerifFrame from '@/components/SerifFrame.vue'
-import SelectorModal from '@/components/SelectorModal.vue'
+import CardSelectorModal from '@/components/CardSelectorModal.vue'
 import { useTargetCard } from '@/composables/targetCard.ts'
 
 const cardList = ref<Array<Card | undefined>>([
@@ -17,11 +17,11 @@ const cardList = ref<Array<Card | undefined>>([
   undefined,
 ])
 
-const isVisibleSelectorModal = ref(false)
+const isVisibleCardSelectorModal = ref(false)
 const { targetCardIndex, targetCard } = useTargetCard(cardList)
-const showSelectorModal = (cardIndex: number) => {
+const showCardSelectorModal = (cardIndex: number) => {
   targetCardIndex.value = cardIndex
-  isVisibleSelectorModal.value = true
+  isVisibleCardSelectorModal.value = true
 }
 </script>
 
@@ -33,21 +33,21 @@ const showSelectorModal = (cardIndex: number) => {
     />
     <VueDraggable v-model="cardList" tag="ul">
       <li v-for="(card, index) in cardList" v-bind:key="index">
-        <CardImage v-bind:card="card" size="ls" v-on:click="showSelectorModal(index)" />
+        <CardImage v-bind:card="card" size="ls" v-on:click="showCardSelectorModal(index)" />
       </li>
     </VueDraggable>
     <SerifFrame direction="bottom" message="今日も1日がんばります！" />
 
     <VueFinalModal
       class="modal"
-      v-model="isVisibleSelectorModal"
+      v-model="isVisibleCardSelectorModal"
       v-bind::click-to-close="true"
       v-bind:esc-to-close="true"
     >
-      <SelectorModal
+      <CardSelectorModal
         v-model="targetCard"
-        v-on:confirm="isVisibleSelectorModal = false"
-        v-on:cancel="isVisibleSelectorModal = false"
+        v-on:confirm="isVisibleCardSelectorModal = false"
+        v-on:cancel="isVisibleCardSelectorModal = false"
       />
     </VueFinalModal>
   </section>

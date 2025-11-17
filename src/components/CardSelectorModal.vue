@@ -63,7 +63,7 @@ const cancel = () => {
 </script>
 
 <template>
-  <el-container id="selector-modal">
+  <el-container id="card-selector-modal">
     <el-header>
       <h2>カード選択</h2>
     </el-header>
