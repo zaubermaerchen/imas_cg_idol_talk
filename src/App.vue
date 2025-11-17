@@ -4,10 +4,11 @@ import { domToPng } from 'modern-screenshot'
 
 import MyStudio from '@/components/MyStudio.vue'
 
-const main = ref<HTMLElement | null>(null)
+const myStudio = ref<InstanceType<typeof MyStudio> | null>(null)
 
 const downloadImage = async () => {
-  const dataUrl = await domToPng(main.value!)
+  const node = myStudio.value!.$el as HTMLElement
+  const dataUrl = await domToPng(node)
   const link = document.createElement('a')
   link.download = 'screenshot.png'
   link.href = dataUrl
@@ -16,9 +17,12 @@ const downloadImage = async () => {
 </script>
 
 <template>
-  <main ref="main">
-    <MyStudio />
-  </main>
-
-  <button v-on:click="downloadImage">Download Image</button>
+  <el-container>
+    <el-main>
+      <MyStudio ref="myStudio" />
+    </el-main>
+    <el-footer>
+      <el-button type="primary" v-on:click="downloadImage">Download Image</el-button>
+    </el-footer>
+  </el-container>
 </template>
