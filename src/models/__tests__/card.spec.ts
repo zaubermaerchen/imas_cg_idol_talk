@@ -28,7 +28,10 @@ describe('Card', () => {
 
   it('画像URLが正常に生成されるか', () => {
     const card1 = new Card(1000101, '島村卯月', 0, 0, '0dabb79ff64691111a0abae2ffed01ce')
-    expect(card1.imageUrl()).toBe(
+    expect(card1.imageUrl('xs')).toBe(
+      'https://example.com/card/xs/0dabb79ff64691111a0abae2ffed01ce.jpg',
+    )
+    expect(card1.imageUrl('ls')).toBe(
       'https://example.com/card/ls/0dabb79ff64691111a0abae2ffed01ce.jpg',
     )
 
@@ -39,7 +42,10 @@ describe('Card', () => {
       4,
       '00f4266728c5a057c338b3033a9aa17c',
     )
-    expect(card2.imageUrl()).toBe(
+    expect(card2.imageUrl('xs')).toBe(
+      'https://example.com/card/xs/00f4266728c5a057c338b3033a9aa17c.jpg',
+    )
+    expect(card2.imageUrl('ls')).toBe(
       'https://example.com/card/ls/00f4266728c5a057c338b3033a9aa17c.jpg',
     )
   })

@@ -1,3 +1,5 @@
+export type CardSize = 'xs' | 'ls'
+
 export default class Card {
   id: number
   name: string
@@ -13,7 +15,7 @@ export default class Card {
     this.hash = hash
   }
 
-  imageUrl = (): string => {
-    return `${import.meta.env.VITE_IMAGE_SERVER_URL}/card/ls/${this.hash}.jpg`
+  imageUrl = (size: CardSize): string => {
+    return `${import.meta.env.VITE_IMAGE_SERVER_URL}/card/${size}/${this.hash}.jpg`
   }
 }

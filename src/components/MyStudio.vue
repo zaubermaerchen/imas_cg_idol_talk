@@ -23,7 +23,7 @@ const cardList = ref<Array<Card | undefined>>([
     />
     <VueDraggable v-model="cardList" tag="ul">
       <li v-for="(card, index) in cardList" v-bind:key="index">
-        <CardImage v-bind:card="card" />
+        <CardImage v-bind:card="card" size="ls" />
       </li>
     </VueDraggable>
     <SerifFrame direction="bottom" message="今日も1日がんばります！" />
