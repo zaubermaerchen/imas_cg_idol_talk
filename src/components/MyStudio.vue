@@ -17,13 +17,14 @@ const cardList = ref<Array<Card | undefined>>([
   new Card(1001301, '五十嵐響子', 0, 0, 'fb3b173c49703071b4dbdd5ed424640c'),
   undefined,
 ])
-const topSerif = ref(
+const serifList = ref<Serif[]>([
   new Serif(
+    true,
     0,
     'はじめまして、プロデューサーさん！ 島村卯月、17歳です。私、精一杯頑張りますから、一緒に夢叶えましょうね♪よろしくお願いしますっ！',
   ),
-)
-const bottomSerif = ref(new Serif(0, '今日も1日がんばります！'))
+  new Serif(false, 0, '今日も1日がんばります！'),
+])
 
 const isVisibleCardSelectorModal = ref(false)
 const { targetCardIndex, targetCard } = useTargetCard(cardList)
@@ -35,13 +36,13 @@ const showCardSelectorModal = (cardIndex: number) => {
 
 <template>
   <section id="my-studio">
-    <SerifFrame direction="top" v-bind:serif="topSerif" />
+    <SerifFrame v-bind:serif="serifList[0]!" />
     <VueDraggable v-model="cardList" tag="ul">
       <li v-for="(card, index) in cardList" v-bind:key="index">
         <CardImage v-bind:card="card" size="ls" v-on:click="showCardSelectorModal(index)" />
       </li>
     </VueDraggable>
-    <SerifFrame direction="bottom" v-bind:serif="bottomSerif" />
+    <SerifFrame v-bind:serif="serifList[1]!" />
 
     <VueFinalModal
       class="modal"
