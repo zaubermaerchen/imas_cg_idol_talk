@@ -4,6 +4,7 @@ import { VueDraggable } from 'vue-draggable-plus'
 import { VueFinalModal } from 'vue-final-modal'
 
 import Card from '@/models/card.ts'
+import Serif from '@/models/serif.ts'
 import CardImage from '@/components/CardImage.vue'
 import SerifFrame from '@/components/SerifFrame.vue'
 import CardSelectorModal from '@/components/CardSelectorModal.vue'
@@ -16,6 +17,13 @@ const cardList = ref<Array<Card | undefined>>([
   new Card(1001301, '五十嵐響子', 0, 0, 'fb3b173c49703071b4dbdd5ed424640c'),
   undefined,
 ])
+const topSerif = ref(
+  new Serif(
+    0,
+    'はじめまして、プロデューサーさん！ 島村卯月、17歳です。私、精一杯頑張りますから、一緒に夢叶えましょうね♪よろしくお願いしますっ！',
+  ),
+)
+const bottomSerif = ref(new Serif(0, '今日も1日がんばります！'))
 
 const isVisibleCardSelectorModal = ref(false)
 const { targetCardIndex, targetCard } = useTargetCard(cardList)
@@ -27,16 +35,13 @@ const showCardSelectorModal = (cardIndex: number) => {
 
 <template>
   <section id="my-studio">
-    <SerifFrame
-      direction="top"
-      message="はじめまして、プロデューサーさん！ 島村卯月、17歳です。私、精一杯頑張りますから、一緒に夢叶えましょうね♪よろしくお願いしますっ！"
-    />
+    <SerifFrame direction="top" v-bind:serif="topSerif" />
     <VueDraggable v-model="cardList" tag="ul">
       <li v-for="(card, index) in cardList" v-bind:key="index">
         <CardImage v-bind:card="card" size="ls" v-on:click="showCardSelectorModal(index)" />
       </li>
     </VueDraggable>
-    <SerifFrame direction="bottom" message="今日も1日がんばります！" />
+    <SerifFrame direction="bottom" v-bind:serif="bottomSerif" />
 
     <VueFinalModal
       class="modal"
