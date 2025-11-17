@@ -8,6 +8,7 @@ import Serif from '@/models/serif.ts'
 import CardImage from '@/components/CardImage.vue'
 import SerifFrame from '@/components/SerifFrame.vue'
 import CardSelectorModal from '@/components/CardSelectorModal.vue'
+import SerifEditorModal from '@/components/SerifEditorModal.vue'
 import { useTargetCard } from '@/composables/targetCard.ts'
 
 const cardList = ref<Array<Card | undefined>>([
@@ -32,11 +33,16 @@ const showCardSelectorModal = (cardIndex: number) => {
   targetCardIndex.value = cardIndex
   isVisibleCardSelectorModal.value = true
 }
+
+const isVisibleSerifEditorModal = ref(false)
+const showSerifEditorModal = () => {
+  isVisibleSerifEditorModal.value = true
+}
 </script>
 
 <template>
   <section id="my-studio">
-    <SerifFrame v-bind:serif="serifList[0]!" />
+    <SerifFrame v-bind:serif="serifList[0]!" v-on:click="showSerifEditorModal" />
     <VueDraggable v-model="cardList" tag="ul">
       <li v-for="(card, index) in cardList" v-bind:key="index">
         <CardImage v-bind:card="card" size="ls" v-on:click="showCardSelectorModal(index)" />
@@ -54,6 +60,19 @@ const showCardSelectorModal = (cardIndex: number) => {
         v-model="targetCard"
         v-on:confirm="isVisibleCardSelectorModal = false"
         v-on:cancel="isVisibleCardSelectorModal = false"
+      />
+    </VueFinalModal>
+
+    <VueFinalModal
+      class="modal"
+      v-model="isVisibleSerifEditorModal"
+      v-bind::click-to-close="true"
+      v-bind:esc-to-close="true"
+    >
+      <SerifEditorModal
+        v-model="serifList[0]!"
+        v-on:confirm="isVisibleSerifEditorModal = false"
+        v-on:cancel="isVisibleSerifEditorModal = false"
       />
     </VueFinalModal>
   </section>

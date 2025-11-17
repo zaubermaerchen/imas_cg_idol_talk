@@ -201,3 +201,9 @@ ul.button-list > li {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+#serif-editor-modal {
+  color: black;
+  background-color: white;
+  width: 500px;
+}
