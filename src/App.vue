@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { VueDraggable } from 'vue-draggable-plus'
 import { domToPng } from 'modern-screenshot'
 
 import Card from '@/models/card.ts'
@@ -30,9 +31,11 @@ const downloadImage = async () => {
       direction="top"
       message="はじめまして、プロデューサーさん！ 島村卯月、17歳です。私、精一杯頑張りますから、一緒に夢叶えましょうね♪よろしくお願いしますっ！"
     />
-    <ul>
-      <li v-for="(card, index) in cardList" v-bind:key="index"><CardImage v-bind:card="card" /></li>
-    </ul>
+    <VueDraggable v-model="cardList" tag="ul">
+      <li v-for="(card, index) in cardList" v-bind:key="index">
+        <CardImage v-bind:card="card" />
+      </li>
+    </VueDraggable>
     <SerifFrame direction="bottom" message="今日も1日がんばります！" />
   </main>
 

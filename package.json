@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "modern-screenshot": "^4.6.6",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "vue-draggable-plus": "^0.6.0"
   },
   "devDependencies": {
     "@prettier/plugin-oxc": "^0.0.4",
