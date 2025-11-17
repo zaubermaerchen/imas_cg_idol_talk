@@ -41,6 +41,9 @@ p::after {
   border-width: 0 4px;
 }
 
+p.top {
+  margin-bottom: 12px;
+}
 p.top:before {
   border-top: solid 12px #0080ff;
   bottom: -12px;
@@ -50,6 +53,9 @@ p.top:after {
   bottom: -8px;
 }
 
+p.bottom {
+  margin-top: 12px;
+}
 p.bottom:before {
   border-bottom: solid 12px #0080ff;
   top: -12px;
