@@ -10,7 +10,7 @@ const downloadImage = async () => {
   const node = myStudio.value!.$el as HTMLElement
   const dataUrl = await domToPng(node)
   const link = document.createElement('a')
-  link.download = 'screenshot.png'
+  link.download = `my_studio_${Math.round(new Date().getTime() / 1000)}.png`
   link.href = dataUrl
   link.click()
 }
