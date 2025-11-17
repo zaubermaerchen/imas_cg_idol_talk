@@ -1,0 +1,216 @@
+body {
+  line-height: 1.6;
+  font-size: 15px;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, 'Noto Sans JP', sans-serif;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul.button-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+ul.button-list > li {
+  margin-left: 0.5em;
+}
+
+.serif {
+  min-height: 1.45em;
+  color: #1d1d1d;
+  background: #ffffff;
+  margin: 0;
+  padding: 5px 10px;
+  word-wrap: break-word;
+  border: solid 3px #0080ff;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.serif::before,
+.serif::after {
+  position: absolute;
+  content: ' ';
+  width: 0;
+  height: 0;
+  border: solid 0 transparent;
+}
+
+.serif::before {
+  border-width: 0 6px;
+}
+.serif::after {
+  border-width: 0 4px;
+}
+
+.serif.top {
+  margin-bottom: 12px;
+}
+.serif.top:before {
+  border-top: solid 12px #0080ff;
+  bottom: -12px;
+}
+.serif.top:after {
+  border-top: solid 9px #fff;
+  bottom: -8px;
+}
+
+.serif.bottom {
+  margin-top: 12px;
+}
+.serif.bottom:before {
+  border-bottom: solid 12px #0080ff;
+  top: -12px;
+}
+.serif.bottom:after {
+  border-bottom: solid 9px #fff;
+  top: -8px;
+}
+
+.serif.cute {
+  border-color: #f36;
+}
+.serif.cool {
+  border-color: #0080ff;
+}
+.serif.passion {
+  border-color: #ffb025;
+}
+
+.serif.top.cute:before {
+  border-top-color: #f36;
+}
+.serif.top.cool:before {
+  border-top-color: #0080ff;
+}
+.serif.top.passion:before {
+  border-top-color: #ffb025;
+}
+
+.serif.bottom.cute:before {
+  border-bottom-color: #f36;
+}
+.serif.bottom.cool:before {
+  border-bottom-color: #0080ff;
+}
+.serif.bottom.passion:before {
+  border-bottom-color: #ffb025;
+}
+
+.serif.position0:before {
+  left: 138px;
+}
+.serif.position0:after {
+  left: 140px;
+}
+.serif.position1:before {
+  left: 78px;
+}
+.serif.position1:after {
+  left: 80px;
+}
+.serif.position2:before {
+  left: 198px;
+}
+.serif.position2:after {
+  left: 200px;
+}
+.serif.position3:before {
+  left: 18px;
+}
+.serif.position3:after {
+  left: 20px;
+}
+.serif.position4:before {
+  left: 258px;
+}
+.serif.position4:after {
+  left: 260px;
+}
+
+#app {
+  width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+#app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app-container > .el-footer {
+  width: 360px;
+}
+
+#my-studio {
+  width: 300px;
+  padding: 5px 10px;
+  background: #000000;
+}
+
+#my-studio > ul {
+  display: flex;
+  font-size: 0;
+  margin-top: 0;
+  padding-left: 1em;
+}
+
+#my-studio > ul > li {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+#card-selector-modal {
+  color: black;
+  background-color: white;
+}
+#card-selector-modal > .el-main {
+  padding-top: 0;
+}
+#card-selector-modal ul.card-list {
+  list-style: none;
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  align-content: baseline;
+  font-size: 0;
+}
+#card-selector-modal ul.card-list > li {
+  margin: 0;
+  padding: 0;
+}
+#card-selector-modal ul.card-list > li > div {
+  position: relative;
+  display: inline-block;
+}
+#card-selector-modal ul.card-list > li > div.selected::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#serif-editor-modal {
+  color: black;
+  background-color: white;
+  width: 500px;
+}

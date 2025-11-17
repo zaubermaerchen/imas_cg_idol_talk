@@ -1,14 +1,16 @@
-import Vue from 'vue';
-import ElementUI from 'element-ui'
-import VueThinModal from 'vue-thin-modal'
-import App from './app.vue';
-import 'element-ui/lib/theme-chalk/index.css'
-import 'vue-thin-modal/dist/vue-thin-modal.css'
+import './assets/main.css'
+import 'element-plus/dist/index.css'
+import 'vue-final-modal/style.css'
 
-Vue.use(VueThinModal)
-Vue.use(ElementUI);
+import { createApp } from 'vue'
+import ElementPlus from 'element-plus'
+import { createVfm } from 'vue-final-modal'
 
-new Vue({
-    el: "#app",
-    render: h => h(App)
-});
+import App from './App.vue'
+import { dependencyProviderPlugin } from '@/plugins/dependencyProviderPlugin.ts'
+
+const app = createApp(App)
+app.use(ElementPlus)
+app.use(createVfm())
+app.use(dependencyProviderPlugin)
+app.mount('#app')
