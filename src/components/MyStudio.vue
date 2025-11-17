@@ -71,6 +71,7 @@ const showSerifEditorModal = () => {
     >
       <SerifEditorModal
         v-model="serifList[0]!"
+        v-bind:card-list="cardList"
         v-on:confirm="isVisibleSerifEditorModal = false"
         v-on:cancel="isVisibleSerifEditorModal = false"
       />
