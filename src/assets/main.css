@@ -208,6 +208,7 @@ ul.button-list > li {
 #card-selector-modal ul.card-list > li {
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 #card-selector-modal ul.card-list > li > div {
   position: relative;
