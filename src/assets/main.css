@@ -30,6 +30,7 @@ ul.button-list > li {
   margin: 0;
   padding: 10px 20px;
   word-wrap: break-word;
+  white-space: pre-wrap;
   border: solid 6px #0080ff;
   border-radius: 20px;
   position: relative;
