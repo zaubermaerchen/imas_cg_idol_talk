@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useTemplateRef, watch } from 'vue'
+import { useElementSize } from '@vueuse/core'
 
 import Serif from '@/models/serif.ts'
 import Card from '@/models/card.ts'
@@ -7,6 +8,9 @@ import Card from '@/models/card.ts'
 interface Props {
   serif: Serif
   card?: Card
+}
+interface Emits {
+  (e: 'changeSize', width: number, height: number): void
 }
 
 const typeMap = new Map<number, string>([
@@ -16,6 +20,14 @@ const typeMap = new Map<number, string>([
 ])
 
 const props = defineProps<Props>()
+const emits = defineEmits<Emits>()
+
+const element = useTemplateRef<HTMLElement>('element')
+const { width, height } = useElementSize(element, undefined, { box: 'border-box' })
+watch([width, height], () => {
+  emits('changeSize', width.value, height.value)
+})
+
 const classList = computed(() => {
   const list = ['serif']
   list.push(props.serif.isTop ? 'top' : 'bottom')
@@ -27,7 +39,7 @@ const classList = computed(() => {
 </script>
 
 <template>
-  <p v-bind:class="classList">
+  <p ref="element" v-bind:class="classList">
     {{ props.serif.message }}
   </p>
 </template>

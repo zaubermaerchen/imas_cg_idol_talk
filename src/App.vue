@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 import { domToBlob } from 'modern-screenshot'
 
 import MyStudio from '@/components/MyStudio.vue'
 
-const myStudio = ref<InstanceType<typeof MyStudio> | null>(null)
+const myStudio = useTemplateRef<typeof MyStudio>('myStudio')
 
 const imagePath = ref<string | null>(null)
 const downloadImage = async () => {

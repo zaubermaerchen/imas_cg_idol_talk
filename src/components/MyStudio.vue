@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, useTemplateRef } from 'vue'
+import { useElementSize } from '@vueuse/core'
 import { VueDraggable } from 'vue-draggable-plus'
 import { VueFinalModal } from 'vue-final-modal'
 
@@ -15,6 +16,22 @@ import { findCardByPosition } from '@/utils/card.ts'
 
 const cardList = ref<Array<Card | undefined>>(Array.from({ length: 5 }))
 const serifList = ref<Serif[]>([new Serif(true), new Serif(false)])
+
+const unitElement = useTemplateRef<HTMLElement>('unitElement')
+const { height: unitHeight } = useElementSize(unitElement, undefined, { box: 'border-box' })
+
+const topSerifHeight = ref(0)
+const bottomSerifHeight = ref(0)
+const myStudioHeight = computed(() => {
+  return `${unitHeight.value + topSerifHeight.value + bottomSerifHeight.value}px`
+})
+
+const unitTop = computed(() =>
+  topSerifHeight.value > 0 ? `${topSerifHeight.value - 10}px` : undefined,
+)
+const bottomSerifTop = computed(() =>
+  unitTop.value !== undefined ? `${topSerifHeight.value + unitHeight.value - 34}px` : undefined,
+)
 
 const isVisibleCardSelectorModal = ref(false)
 const { targetCardIndex, targetCard } = useTargetCard(cardList)
@@ -32,21 +49,24 @@ const showSerifEditorModal = (index: number) => {
 </script>
 
 <template>
-  <section id="my-studio">
-    <SerifFrame
-      v-bind:serif="serifList[0]!"
-      v-bind:card="findCardByPosition(cardList, serifList[0]!.position)"
-      v-on:click="showSerifEditorModal(0)"
-    />
-    <VueDraggable v-model="cardList" tag="ul">
+  <section id="my-studio" v-bind:style="{ height: myStudioHeight }">
+    <VueDraggable v-model="cardList" tag="ul" ref="unitElement" v-bind:style="{ top: unitTop }">
       <li v-for="(card, index) in cardList" v-bind:key="index">
         <CardImage v-bind:card="card" size="ls" v-on:click="showCardSelectorModal(index)" />
       </li>
     </VueDraggable>
     <SerifFrame
+      v-bind:serif="serifList[0]!"
+      v-bind:card="findCardByPosition(cardList, serifList[0]!.position)"
+      v-on:click="showSerifEditorModal(0)"
+      v-on:change-size="(_, height) => (topSerifHeight = height)"
+    />
+    <SerifFrame
       v-bind:serif="serifList[1]!"
       v-bind:card="findCardByPosition(cardList, serifList[1]!.position)"
+      v-bind:style="{ top: bottomSerifTop }"
       v-on:click="showSerifEditorModal(1)"
+      v-on:change-size="(_, height) => (bottomSerifHeight = height)"
     />
 
     <VueFinalModal
