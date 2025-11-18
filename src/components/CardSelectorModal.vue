@@ -94,14 +94,13 @@ const cancel = () => {
       <el-scrollbar height="300px" v-on:end-reached="load">
         <ul class="card-list">
           <li v-for="(card, index) in cardList" v-bind:key="index">
-            <div v-bind:class="{ selected: card?.id === selected?.id }">
-              <CardImage
-                v-bind:card="card"
-                v-on:click="selectCard(card)"
-                size="xs"
-                draggable="false"
-              />
-            </div>
+            <button
+              type="button"
+              v-bind:disabled="card?.id === selected?.id"
+              v-on:click="selectCard(card)"
+            >
+              <CardImage v-bind:card="card" size="xs" draggable="false" />
+            </button>
           </li>
         </ul>
       </el-scrollbar>
