@@ -108,34 +108,34 @@ ul.button-list > li {
 }
 
 .serif.position0:before {
-  left: 276px;
+  left: 288px;
 }
 .serif.position0:after {
-  left: 280px;
+  left: 292px;
 }
 .serif.position1:before {
-  left: 156px;
+  left: 168px;
 }
 .serif.position1:after {
-  left: 160px;
+  left: 172px;
 }
 .serif.position2:before {
-  left: 396px;
+  left: 408px;
 }
 .serif.position2:after {
-  left: 400px;
+  left: 412px;
 }
 .serif.position3:before {
-  left: 36px;
+  left: 48px;
 }
 .serif.position3:after {
-  left: 40px;
+  left: 52px;
 }
 .serif.position4:before {
-  left: 516px;
+  left: 528px;
 }
 .serif.position4:after {
-  left: 520px;
+  left: 532px;
 }
 
 #app {
