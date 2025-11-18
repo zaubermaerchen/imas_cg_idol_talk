@@ -208,13 +208,29 @@ ul.button-list > li {
 #card-selector-modal ul.card-list > li {
   margin: 0;
   padding: 0;
-  cursor: pointer;
 }
-#card-selector-modal ul.card-list > li > div {
+#card-selector-modal ul.card-list > li > button {
   position: relative;
   display: inline-block;
+  padding: 0;
+  border: none;
+  font-size: 0;
+  cursor: pointer;
 }
-#card-selector-modal ul.card-list > li > div.selected::before {
+#card-selector-modal ul.card-list > li > button:focus,
+#card-selector-modal ul.card-list > li > button:hover {
+  outline: none;
+}
+#card-selector-modal ul.card-list > li > button:focus::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#card-selector-modal ul.card-list > li > button:disabled::before {
   content: '';
   position: absolute;
   top: 0;
