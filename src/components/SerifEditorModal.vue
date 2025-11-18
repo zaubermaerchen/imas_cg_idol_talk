@@ -54,7 +54,12 @@ const cancel = () => {
           </el-select>
         </el-form-item>
         <el-form-item label="メッセージ">
-          <el-input v-model="serif.message" placeholder="セリフを入力してください" />
+          <el-input
+            v-model="serif.message"
+            v-bind:rows="5"
+            type="textarea"
+            placeholder="セリフを入力してください"
+          />
         </el-form-item>
       </el-form>
     </el-main>
