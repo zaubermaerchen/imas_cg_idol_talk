@@ -22,6 +22,18 @@ ul.button-list > li {
   margin-left: 0.5em;
 }
 
+.container {
+  --height: 0;
+  position: relative;
+  height: calc(var(--height) * 1px);
+}
+.container > * {
+  position: absolute;
+  width: 100%;
+  --top: 0;
+  top: calc(var(--top) * 1px);
+}
+
 .serif {
   font-size: 200%;
   min-height: 52px;
@@ -158,32 +170,16 @@ ul.button-list > li {
   padding: 10px 20px;
   background: #000000;
 }
-#my-studio > div {
-  position: relative;
-  min-height: 523px;
-}
-#my-studio > div > * {
-  position: absolute;
-}
-#my-studio > div > .unit-area {
-  top: 74px;
-}
-#my-studio > div > .unit-area > ul {
+#my-studio .unit {
   display: flex;
   font-size: 0;
   margin-top: 0;
   padding-left: 1em;
 }
-#my-studio > div > .unit-area > ul > li {
+#my-studio .unit > * {
   margin: 0;
   padding: 0;
   cursor: pointer;
-}
-#my-studio > div > .serif-area {
-  width: 100%;
-}
-#my-studio > div > .serif-area.bottom {
-  top: 415px;
 }
 
 #card-selector-modal {

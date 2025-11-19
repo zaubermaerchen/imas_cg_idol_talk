@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, useTemplateRef } from 'vue'
-import { useElementSize } from '@vueuse/core'
+import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import { VueFinalModal } from 'vue-final-modal'
 
 import Card from '@/models/card.ts'
 import Serif from '@/models/serif.ts'
+import Container from '@/components/MyStudioContainer.vue'
 import CardImage from '@/components/CardImage.vue'
 import SerifFrame from '@/components/SerifFrame.vue'
 import CardSelectorModal from '@/components/CardSelectorModal.vue'
@@ -16,28 +16,6 @@ import { findCardByPosition } from '@/utils/card.ts'
 
 const cardList = ref<Array<Card | undefined>>(Array.from({ length: 5 }))
 const serifList = ref<Serif[]>([new Serif(true), new Serif(false)])
-
-const unitElement = useTemplateRef<HTMLElement>('unitElement')
-const topSerifElement = useTemplateRef<HTMLElement>('topSerifElement')
-const bottomSerifElement = useTemplateRef<HTMLElement>('bottomSerifElement')
-const { height: unitHeight } = useElementSize(unitElement, undefined, { box: 'border-box' })
-const { height: topSerifHeight } = useElementSize(topSerifElement, undefined, { box: 'border-box' })
-const { height: bottomSerifHeight } = useElementSize(bottomSerifElement, undefined, {
-  box: 'border-box',
-})
-
-const height = computed(() => {
-  return `${unitHeight.value + topSerifHeight.value + bottomSerifHeight.value - 44 - 24}px`
-})
-
-const unitTop = computed(() =>
-  topSerifHeight.value > 0 ? `${topSerifHeight.value - 44}px` : undefined,
-)
-const bottomSerifTop = computed(() =>
-  unitTop.value !== undefined
-    ? `${topSerifHeight.value + unitHeight.value - 44 - 24}px`
-    : undefined,
-)
 
 const isVisibleCardSelectorModal = ref(false)
 const { targetCardIndex, targetCard } = useTargetCard(cardList)
@@ -56,33 +34,29 @@ const showSerifEditorModal = (index: number) => {
 
 <template>
   <section id="my-studio" ref="main">
-    <div v-bind:style="{ height: height }">
-      <div class="unit-area" ref="unitElement" v-bind:style="{ top: unitTop }">
-        <VueDraggable v-model="cardList" tag="ul">
+    <Container v-bind:main-top-offset="-44" v-bind:footer-top-offset="-24">
+      <template v-slot:default>
+        <VueDraggable v-model="cardList" tag="ul" class="unit">
           <li v-for="(card, index) in cardList" v-bind:key="index">
             <CardImage v-bind:card="card" size="ls" v-on:click="showCardSelectorModal(index)" />
           </li>
         </VueDraggable>
-      </div>
-      <div class="serif-area top" ref="topSerifElement">
+      </template>
+      <template v-slot:header>
         <SerifFrame
           v-bind:serif="serifList[0]!"
           v-bind:card="findCardByPosition(cardList, serifList[0]!.position)"
           v-on:click="showSerifEditorModal(0)"
         />
-      </div>
-      <div
-        class="serif-area bottom"
-        ref="bottomSerifElement"
-        v-bind:style="{ top: bottomSerifTop }"
-      >
+      </template>
+      <template v-slot:footer>
         <SerifFrame
           v-bind:serif="serifList[1]!"
           v-bind:card="findCardByPosition(cardList, serifList[1]!.position)"
           v-on:click="showSerifEditorModal(1)"
         />
-      </div>
-    </div>
+      </template>
+    </Container>
   </section>
 
   <VueFinalModal
