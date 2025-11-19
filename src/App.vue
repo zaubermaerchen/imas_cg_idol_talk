@@ -12,7 +12,7 @@ const downloadImage = async () => {
     URL.revokeObjectURL(imagePath.value)
     imagePath.value = null
   }
-  const node = myStudio.value!.$el as HTMLElement
+  const node = myStudio.value!.$refs.main as HTMLElement
   const blob = await domToBlob(node, { type: 'image/jpeg', quality: 0.85 })
   imagePath.value = URL.createObjectURL(blob)
 
