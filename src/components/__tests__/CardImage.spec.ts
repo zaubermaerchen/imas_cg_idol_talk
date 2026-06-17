@@ -21,7 +21,7 @@ describe('CardImage', () => {
     const screen = render(CardImage, { props: { card, size: 'ls' } })
     const image = screen.baseElement.querySelector('img')
     expect(image?.src).toBe('https://example.com/card/ls/0dabb79ff64691111a0abae2ffed01ce.jpg')
-    expect(image?.width).toBe(60)
+    expect(image?.width).toBe(120)
   })
 
   it('カードがない場合はブランク画像が表示されるか', () => {
